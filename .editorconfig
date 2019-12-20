@@ -1,0 +1,74 @@
+root = true
+
+# default
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false
+indent_size = 2
+
+# YAML
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# JSON
+[*.json]
+indent_style = space
+indent_size = 2
+
+# Makefile
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+# Golang
+[*.go]
+indent_style = tab
+indent_size = 4
+[go.{sum,mod}]
+indent_style = tab
+indent_size = 4
+
+# JavaScript
+[*.{js,jsx}]
+indent_style = space
+indent_size = 2
+
+# TypeScript
+[*.{ts,tsx}]
+indent_style = tab
+indent_size = 4
+
+# Vue
+[*.vue]
+indent_style = space
+indent_size = 2
+
+# HTML
+[*.{htm,html}]
+indent_style = space
+indent_size = 2
+
+# CSS
+[*.{css,scss}]
+indent_style = space
+indent_size = 2
+
+## For JS Project
+# JSON format
+[.prettierrc]
+indent_style = space
+indent_size = 2
+
+# Terraform
+[*.tf]
+indent_style = space
+indent_size = 2

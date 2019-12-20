@@ -1,0 +1,13 @@
+name: Checkout submodule
+description: Checkout submodule
+author: Mushus
+inputs:
+  path:
+    description: submodule path
+    required: false
+  identityFile:
+    description: identity file using checkout submodule
+    required: false
+runs:
+  using: "node12"
+  main: "dist/index.js"
