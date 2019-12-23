@@ -44,8 +44,8 @@ indent_size = 2
 
 # TypeScript
 [*.{ts,tsx}]
-indent_style = tab
-indent_size = 4
+indent_style = space
+indent_size = 2
 
 # Vue
 [*.vue]

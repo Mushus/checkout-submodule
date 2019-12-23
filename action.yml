@@ -2,12 +2,21 @@ name: Checkout submodule
 description: Checkout submodule
 author: Mushus
 inputs:
-  path:
-    description: submodule path
+  basePath:
+    description: A path to execute git operation
     required: false
-  identityFile:
-    description: identity file using checkout submodule
+    default: .
+  submodulePath:
+    description: A path of submodule directory
+    required: true
+  identifierFile:
+    description: A identifier secret key to used checkout the submodule
     required: false
 runs:
   using: "node12"
-  main: "dist/index.js"
+  main: "dist/install/index.js"
+  post: "dist/uninstall/index.js"
+  post-if: always()
+branding:
+  icon: 'archive'
+  color: 'gray-dark'
