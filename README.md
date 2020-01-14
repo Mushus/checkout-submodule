@@ -7,7 +7,7 @@ This Action makes checkout private submodule simply
 **Checkout submodule `foo`**
 
 ```
-- uses: Mushus/checkout-submodule@v0.1.0
+- uses: Mushus/checkout-submodule@v1
   with:
     submodulePath: ./foo
 ```
@@ -15,7 +15,7 @@ This Action makes checkout private submodule simply
 **Checkout submodule `bar` with deploy key `DEPLOY_KEY_BAR`**
 
 ```
-- uses: Mushus/checkout-submodule@v0.1.0
+- uses: Mushus/checkout-submodule@v1
   with:
     submodulePath: ./bar
     identifier: ${{ secret.DEPLOY_KEY_BAR }}
@@ -26,7 +26,7 @@ This Action makes checkout private submodule simply
 **Checkout submodule `foo` in repository `bar`**
 
 ```
-- uses: Mushus/checkout-submodule@v0.1.0
+- uses: Mushus/checkout-submodule@v1
   with:
     basePath: ./bar
     submodulePath: ./foo
