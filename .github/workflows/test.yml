@@ -1,0 +1,57 @@
+name: Test checkout submodule
+on: push
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir test_repo
+          cd test_repo
+          git init
+          cp ../test/.gitmodules .gitmodules
+          git update-index --add --cacheinfo 160000 3446fad68fcaac29bf295ccc8a6fb56ed764f165 test
+          git submodule sync
+      - uses: ./
+        with:
+          basePath: test_repo
+          submodulePath: test
+          identifierFile: ${{ secrets.SUBMODULE_TOKEN }}
+      - run: |
+          cat ./test_repo/test/README.md
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir test_repo
+          cd test_repo
+          git init
+          cp ../test/.gitmodules .gitmodules
+          git update-index --add --cacheinfo 160000 3446fad68fcaac29bf295ccc8a6fb56ed764f165 test
+          git submodule sync
+      - uses: ./
+        with:
+          basePath: test_repo
+          submodulePath: test
+          identifierFile: ${{ secrets.SUBMODULE_TOKEN }}
+      - run: |
+          cat ./test_repo/test/README.md
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir test_repo
+          cd test_repo
+          git init
+          cp ../test/.gitmodules .gitmodules
+          git update-index --add --cacheinfo 160000 3446fad68fcaac29bf295ccc8a6fb56ed764f165 test
+          git submodule sync
+      - uses: ./
+        with:
+          basePath: test_repo
+          submodulePath: test
+          identifierFile: ${{ secrets.SUBMODULE_TOKEN }}
+      - run: |
+          cat ./test_repo/test/README.md
