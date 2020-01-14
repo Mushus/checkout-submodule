@@ -22,7 +22,13 @@ export default class IdentifierInstaller {
     const filename = this.filename
     const sshPath = await this.createSshPath()
     const identifierPath = path.join(sshPath, filename)
-    fs.writeFileSync(identifierPath, body, {mode: '600'})
+    // NOTE: The file content of identifierFile is not recognized as the
+    // correct format without the final newline.
+    // It is easy to forget the final newline when using secrets.
+    const identifierContent = body.endsWith('\n') ? body : `${body}\n`
+    fs.writeFileSync(identifierPath, identifierContent, {
+      mode: '600'
+    })
     return identifierPath
   }
 
