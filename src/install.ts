@@ -26,15 +26,16 @@ async function run(): Promise<void> {
     let identifyPath: string | undefined
     if (hasIdentifier) {
       identifyPath = await identifierInstaller.install(identifier)
+      identifyPath = identifyPath.replace(/\\/g, '/')
     }
 
-    await exec.exec(gitPath, [
+    await exec.exec(`"${gitPath}"`, [
       '-C',
       absRepositoryPath,
       ...(identifyPath
         ? [
             '-c',
-            `core.sshCommand=${sshPath} -o StrictHostKeyChecking=no -i ${identifyPath} -F /dev/null`
+            `core.sshCommand="${sshPath}" -o StrictHostKeyChecking=no -i ${identifyPath} -F /dev/null`
           ]
         : []),
       'submodule',
@@ -44,7 +45,7 @@ async function run(): Promise<void> {
     ])
 
     if (hasIdentifier) {
-      await exec.exec(gitPath, [
+      await exec.exec(`"${gitPath}"`, [
         '-C',
         absSubmodulePath,
         'config',

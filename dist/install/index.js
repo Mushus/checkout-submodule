@@ -1395,14 +1395,15 @@ function run() {
             let identifyPath;
             if (hasIdentifier) {
                 identifyPath = yield identifierInstaller.install(identifier);
+                identifyPath = identifyPath.replace(/\\/g, '/');
             }
-            yield exec.exec(gitPath, [
+            yield exec.exec(`"${gitPath}"`, [
                 '-C',
                 absRepositoryPath,
                 ...(identifyPath
                     ? [
                         '-c',
-                        `core.sshCommand=${sshPath} -o StrictHostKeyChecking=no -i ${identifyPath} -F /dev/null`
+                        `core.sshCommand="${sshPath}" -o StrictHostKeyChecking=no -i ${identifyPath} -F /dev/null`
                     ]
                     : []),
                 'submodule',
@@ -1411,7 +1412,7 @@ function run() {
                 submodulePath
             ]);
             if (hasIdentifier) {
-                yield exec.exec(gitPath, [
+                yield exec.exec(`"${gitPath}"`, [
                     '-C',
                     absSubmodulePath,
                     'config',
